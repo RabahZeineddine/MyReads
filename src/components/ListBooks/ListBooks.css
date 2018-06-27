@@ -1,0 +1,32 @@
+.list-books,
+.bookshelf{
+    width: 100%;
+}
+
+.bookshelf-header{
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+}
+
+.left-line , .right-line {
+    border: 1px solid #000;
+    height: 0.5px;
+    width: calc(50% - 75px);
+
+}
+
+.bookshelf-title{
+    width: 150px;
+    text-align: center;
+    font-size: 13pt;
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+}
+
+.bookshelf-books{
+    display: flex;
+
+}
