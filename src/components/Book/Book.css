@@ -1,0 +1,126 @@
+
+.book{
+    max-width: 178px;
+    background-color: #E7E7E7;
+    margin-left: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.book-top{
+    position: relative;
+}
+
+.book-cover{
+    width: 178px;
+    height: 242px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.book-options{
+    width: 178px;
+    height: 0px;
+    position: absolute;
+    bottom: 0;
+    display: none;
+    z-index: -1;
+    background-color: #fff;
+
+}
+.show-options{
+    display: block;
+    z-index: 0;
+    -webkit-animation-name: show-book-options;
+    -moz-animation-name: show-book-options;
+    -o-animation-name: show-book-options;
+    animation-name: show-book-options;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes show-book-options {
+    from { height: 0; opacity: 0}
+    50%{opacity: 0}
+    to{ height: 242px; opacity: 1}
+}
+
+.book-options-header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.book-options-content{
+    width: 100%;
+    padding-top: 5px;
+
+}
+
+
+
+.book-footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.book-footer-header{
+    display: flex;
+    align-items: center;
+}
+
+.book-options-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.book-option-btn{
+    width: 90%;
+    padding: 10px;
+    font-size: 10pt;
+    text-align: left;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.book-option-btn-clicked{
+    background-image: url("../../icons/tick.svg");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: 20px ;
+}
+
+.divider{
+    width: 90%;
+}
+
+
+.book-title{
+    font-size: 10pt;
+}
+
+.truncate {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.book-options-btn{
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.book-authors{
+    font-size: 8pt;
+}
