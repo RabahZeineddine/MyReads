@@ -20,7 +20,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Header />
-                <ListBooks />
+                <ListBooks books={ this.state.books } />
             </div>
         );
     }
