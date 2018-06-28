@@ -7,7 +7,8 @@ class ListBooks extends Component {
 
 
     static propTypes = {
-        books: PropTypes.array.isRequired
+        books: PropTypes.array.isRequired,
+        onShelfChange: PropTypes.func.isRequired
     }
 
 
@@ -30,7 +31,7 @@ class ListBooks extends Component {
                     </div>
                     <div className="bookshelf-books">
                         {currentlyReadingBooks.map( book => (
-                            <Book book={book} key={book.id} />
+                            <Book book={book} key={book.id} onShelfChange={this.props.onShelfChange} />
                         ))}
                     </div>
                 </div>
@@ -42,7 +43,7 @@ class ListBooks extends Component {
                     </div>
                     <div className="bookshelf-books">
                         {wantToReadBooks.map( book => (
-                            <Book book={book} key={book.id} />
+                            <Book book={book} key={book.id} onShelfChange={this.props.onShelfChange} />
                         ))}
                     </div>
                 </div>
@@ -55,7 +56,7 @@ class ListBooks extends Component {
                     </div>
                     <div className="bookshelf-books">
                         {readBooks.map( book => (
-                            <Book book={book} key={book.id} />
+                            <Book book={book} key={book.id} onShelfChange={this.props.onShelfChange} />
                         ))}
                     </div>
                 </div>

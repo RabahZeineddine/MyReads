@@ -16,11 +16,27 @@ class App extends Component {
         })
     }
 
+    handleShelfChange = (changedBook, shelf) => {
+        let books = this.state.books
+        if(shelf === 'none') books = books.filter( book => book.id !== changedBook.id)
+        else{
+            books = books.map( book => {
+                if(book.id === changedBook.id) book.shelf = shelf
+                return book
+            })
+        }
+
+        BooksAPI.update(changedBook,shelf).then((res) => {
+            /* TODO: filter local books comparing it with res returned from BooksAPI.update() */
+            this.setState({ books })
+        })
+    }
+
     render() {
         return (
             <div className="App">
                 <Header />
-                <ListBooks books={ this.state.books } />
+                <ListBooks books={ this.state.books } onShelfChange={this.handleShelfChange} />
             </div>
         );
     }

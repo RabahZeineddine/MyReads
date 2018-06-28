@@ -10,7 +10,8 @@ class Book extends Component {
     }
 
     static propTypes = {
-        book: PropTypes.object.isRequired
+        book: PropTypes.object.isRequired,
+        onShelfChange: PropTypes.func.isRequired
     }
 
     showBookOptions = () => {
@@ -42,13 +43,29 @@ class Book extends Component {
                             <button className="book-options-btn" onClick={ () => this.hideBookOptions()} ><i className="material-icons">close</i></button>
                         </div>
                         <div className="book-options-content">
-                            <button className={`book-option-btn ${ (book.shelf === 'currentlyReading')? 'book-option-btn-clicked': ''}`} >Currently Reading</button>
+                            <button
+                                className={`book-option-btn ${ (book.shelf === 'currentlyReading')? 'book-option-btn-clicked': ''}`}
+                                onClick={() => this.props.onShelfChange(book, 'currentlyReading')}
+                                >Currently Reading
+                            </button>
                             <hr className="divider"/>
-                            <button className={`book-option-btn ${ (book.shelf === 'wantToRead')? 'book-option-btn-clicked': ''}`} >Want to Read</button>
+                            <button
+                                className={`book-option-btn ${ (book.shelf === 'wantToRead')? 'book-option-btn-clicked': ''}`}
+                                onClick={() => this.props.onShelfChange(book, 'wantToRead')}
+                                >Want to Read
+                            </button>
                             <hr className="divider"/>
-                            <button className={`book-option-btn ${ (book.shelf === 'read')? 'book-option-btn-clicked': ''}`} >Read</button>
+                            <button
+                                className={`book-option-btn ${ (book.shelf === 'read')? 'book-option-btn-clicked': ''}`}
+                                onClick={() => this.props.onShelfChange(book, 'read')}
+                                >Read
+                            </button>
                             <hr className="divider"/>
-                            <button className={`book-option-btn ${ (book.shelf === 'none')? 'book-option-btn-clicked': ''}`} >None</button>
+                            <button
+                                className={`book-option-btn ${ (book.shelf === 'none')? 'book-option-btn-clicked': ''}`}
+                                onClick={() => this.props.onShelfChange(book, 'none')}
+                                >None
+                            </button>
                         </div>
                     </div>
                 </div>
