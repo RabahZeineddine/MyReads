@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import defaultCoverImage from '../../imgs/default_cover.png'
+import defaultCoverImage from '../../imgs/default_cover1.png'
 import './Book.css'
 
 class Book extends Component {
@@ -74,7 +74,7 @@ class Book extends Component {
                         <div className="book-title truncate">{book.title}</div>
                         <button className="book-options-btn" onClick={ () => this.showBookOptions()} ><i className="material-icons">more_vert</i></button>
                     </div>
-                    <div className="book-authors">{  (book.authors && book.authors.length>0) ? book.authors.join(' , '): ''}</div>
+                    <div className="book-authors">{  (book.authors && book.authors.length>0) ? book.authors.join(' , '): 'No author available'}</div>
                 </div>
             </div>
         )

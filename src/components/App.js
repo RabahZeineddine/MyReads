@@ -43,7 +43,7 @@ class App extends Component {
                 )} />
 
                 <Route exact path="/search" render={ () => (
-                    <SearchBooks />
+                    <SearchBooks onShelfChange={this.handleShelfChange} />
                 )} />
 
             </div>
