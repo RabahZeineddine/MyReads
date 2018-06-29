@@ -1,6 +1,9 @@
-.header{
+.header-top{
     height: 30vh;
-    /*background-color: #FFFAD9;*/
+    background-image: url("../../imgs/header.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 50% 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,4 +11,41 @@
 
 .header-title{
     font-size: 5vw;
+}
+
+.header-navbar{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.navbar-line{
+    border: 1px solid #000;
+}
+
+.navbar-content{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-left,
+.navbar-right {
+    width: 50%;
+    display: flex;
+}
+
+.navbar-right{
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.navbar-item{
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.navbar-item:hover{
+    background-color: #EEEEEE;
+    cursor: pointer;
 }

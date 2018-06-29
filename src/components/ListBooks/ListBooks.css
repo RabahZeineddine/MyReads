@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+.list-books{
+    padding-top: 30px;
+}
+
 .bookshelf-header{
     width: 100%;
     display: flex;
@@ -10,9 +14,9 @@
     align-items: center;
 }
 
-.left-line , .right-line {
+.left-line ,
+.right-line {
     border: 1px solid #000;
-    height: 0.5px;
     width: calc(50% - 75px);
 
 }
