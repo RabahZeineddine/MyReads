@@ -1,4 +1,5 @@
 import React, {Component } from 'react'
+import { Link } from 'react-router-dom'
 import './Header.css'
 
 class Header extends Component {
@@ -13,12 +14,12 @@ class Header extends Component {
                     <div className="navbar-line"></div>
                     <div className="navbar-content">
                         <div className="navbar-left">
-                            <div className="navbar-item">Home</div>
-                            <div className="navbar-item">Find books</div>
+                            <Link className="navbar-item" to="/">Home</Link>
+                            <Link className="navbar-item" to="/search">Find books</Link>
                         </div>
                         <div className="navbar-right">
-                            <div className="navbar-item">Login</div>
-                            <div className="navbar-item">Signup</div>
+                            <Link className="navbar-item" to="/login">Login</Link>
+                            <Link className="navbar-item" to="/signup">Signup</Link>
                         </div>
                     </div>
                     <div className="navbar-line"></div>
