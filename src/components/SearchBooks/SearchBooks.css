@@ -1,0 +1,21 @@
+.search-books{
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.search-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input{
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000;
+    width: 60%;
+    font-size: 16pt;
+    text-align: center;
+}
