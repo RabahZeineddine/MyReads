@@ -19,3 +19,14 @@
     font-size: 16pt;
     text-align: center;
 }
+
+.search-result{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.search-result > .book{
+    margin-top: 40px;
+}
