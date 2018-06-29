@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header'
 import ListBooks from './ListBooks'
 import * as BooksAPI from '../utils/BooksAPI'
+import {Route} from 'react-router-dom'
 import './App.css';
 
 class App extends Component {
@@ -36,7 +37,9 @@ class App extends Component {
         return (
             <div className="App">
                 <Header />
-                <ListBooks books={ this.state.books } onShelfChange={this.handleShelfChange} />
+                <Route exact path="/" render={ () => (
+                    <ListBooks books={ this.state.books } onShelfChange={this.handleShelfChange} />
+                )} />
             </div>
         );
     }
