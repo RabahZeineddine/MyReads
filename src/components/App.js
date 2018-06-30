@@ -22,12 +22,13 @@ class App extends Component {
         let books = this.state.books
         if(shelf === 'none') books = books.filter( book => book.id !== changedBook.id)
         else{
+            let selectedBook = books.filter( book => book.id === changedBook.id)[0] || null
+            if(!selectedBook) books = books.concat(changedBook)
             books = books.map( book => {
                 if(book.id === changedBook.id) book.shelf = shelf
                 return book
             })
         }
-
         BooksAPI.update(changedBook,shelf).then((res) => {
             /* TODO: filter local books comparing it with res returned from BooksAPI.update() */
             this.setState({ books })
@@ -43,7 +44,7 @@ class App extends Component {
                 )} />
 
                 <Route exact path="/search" render={ () => (
-                    <SearchBooks onShelfChange={this.handleShelfChange} />
+                    <SearchBooks onShelfChange={this.handleShelfChange} userBooks={this.state.books} />
                 )} />
 
             </div>

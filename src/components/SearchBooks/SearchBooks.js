@@ -10,7 +10,8 @@ import './SearchBooks.css'
 class SearchBooks extends  Component {
 
     static propTypes = {
-        onShelfChange: PropTypes.func.isRequired
+        onShelfChange: PropTypes.func.isRequired,
+        userBooks: PropTypes.array.isRequired
     }
 
 
@@ -24,7 +25,6 @@ class SearchBooks extends  Component {
         if(query !== ''){
             query = query.replace(new RegExp(/\./,'g'),'')
             query = escapeRegExp(query,'i')
-            console.log(query)
             BooksAPI.search(query).then(( result ) => {
                 if(result && !result.hasOwnProperty("error")){
                     this.setState({ query, foundBooks: result})
@@ -52,9 +52,11 @@ class SearchBooks extends  Component {
                 </div>
                 <div className="search-result">
                     {(this.state.foundBooks.length > 0 && this.state.query !== '' )?(
-                        this.state.foundBooks.map( book => (
-                            <Book book={book} key={book.id} onShelfChange={this.props.onShelfChange} />
-                        ))
+                        this.state.foundBooks.map( book => {
+                            let userBook = this.props.userBooks.filter( userBook => userBook.id === book.id )[0] || null
+                            book.shelf = (userBook)? userBook.shelf: 'none'
+                            return ( <Book book={book}  onShelfChange={this.props.onShelfChange} key={book.id} /> )
+                        })
                     ): (this.state.foundBooks.length === 0 && this.state.query !== '')? (
                         <div>No book found</div>
                     ): '' }
