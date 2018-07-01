@@ -37,6 +37,7 @@
 
 .navbar-right{
     justify-content: flex-end;
+    align-items: center;
     margin-right: 10px;
 }
 
@@ -45,6 +46,14 @@
     margin-left: 10px;
     text-decoration: none;
     color: #000;
+}
+
+.navbar-item-text{
+    padding: 0 10px !important;
+    margin-left: 10px !important;
+    text-align: center;
+    vertical-align: center;
+    border-right: 1px solid #000;
 }
 
 .navbar-item:hover{

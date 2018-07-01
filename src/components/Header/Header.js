@@ -1,5 +1,6 @@
 import React, {Component } from 'react'
 import { Link } from 'react-router-dom'
+import * as Util from '../../utils/util'
 import './Header.css'
 
 class Header extends Component {
@@ -17,10 +18,18 @@ class Header extends Component {
                             <Link className="navbar-item" to="/">Home</Link>
                             <Link className="navbar-item" to="/search">Find books</Link>
                         </div>
-                        <div className="navbar-right">
-                            <Link className="navbar-item" to="/login">Login</Link>
-                            <Link className="navbar-item" to="/signup">Signup</Link>
-                        </div>
+                        { Util.sessionCheck('user')? (
+                                <div className="navbar-right">
+                                    <p className="navbar-item-text">Welcome, {Util.getSession('user').name}</p>
+                                    <Link className="navbar-item" to="/logout"> Logout</Link>
+                                </div>):
+                            (
+                                <div className="navbar-right">
+                                    <Link className="navbar-item" to="/login">Login</Link>
+                                    <Link className="navbar-item" to="/signup">Signup</Link>
+                                </div>
+                            )}
+
                     </div>
                     <div className="navbar-line"></div>
                 </div>

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Header from './Header'
 import ListBooks from './ListBooks'
 import SearchBooks from './SearchBooks'
+import Footer from './Footer'
+import Login from './Login'
+import * as Util from '../utils/util'
 import * as BooksAPI from '../utils/BooksAPI'
 import {Route} from 'react-router-dom'
 import './App.css';
@@ -16,6 +19,10 @@ class App extends Component {
         BooksAPI.getAll().then( books => {
             this.setState({books})
         })
+    }
+
+    handleUserLogin = (user) => {
+        Util.setSession('user', user)
     }
 
     handleShelfChange = (changedBook, shelf) => {
@@ -47,6 +54,14 @@ class App extends Component {
                     <SearchBooks onShelfChange={this.handleShelfChange} userBooks={this.state.books} />
                 )} />
 
+                <Route exact path="/login" render={ ({history}) => (
+                    <Login onUserLogin={(user) => {
+                            this.handleUserLogin(user)
+                            history.push('/')
+                    }} />
+                )} />
+
+                <Footer />
             </div>
         );
     }

@@ -5,6 +5,7 @@
 
 .list-books{
     padding-top: 30px;
+    flex-grow: 1;
 }
 
 .bookshelf-header{

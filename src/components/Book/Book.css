@@ -58,8 +58,6 @@
 
 }
 
-
-
 .book-footer{
     width: 100%;
     display: flex;
@@ -81,7 +79,6 @@
 
 .book-option-btn{
     width: 90%;
-    padding: 10px;
     font-size: 10pt;
     text-align: left;
     background-color: transparent;
