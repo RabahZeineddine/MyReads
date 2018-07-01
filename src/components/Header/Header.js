@@ -1,9 +1,15 @@
 import React, {Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as Util from '../../utils/util'
+import PropTypes from 'prop-types'
 import './Header.css'
 
 class Header extends Component {
+
+    static propTypes ={
+        logout: PropTypes.func.isRequired,
+        user: PropTypes.object.isRequired,
+        userLoggedIn: PropTypes.bool.isRequired
+    }
 
     render(){
         return (
@@ -18,10 +24,10 @@ class Header extends Component {
                             <Link className="navbar-item" to="/">Home</Link>
                             <Link className="navbar-item" to="/search">Find books</Link>
                         </div>
-                        { Util.sessionCheck('user')? (
+                        { this.props.userLoggedIn? (
                                 <div className="navbar-right">
-                                    <p className="navbar-item-text">Welcome, {Util.getSession('user').name}</p>
-                                    <Link className="navbar-item" to="/logout"> Logout</Link>
+                                    <p className="navbar-item-text">Welcome, {this.props.user.name}</p>
+                                    <a className="navbar-item" onClick={this.props.logout}> Logout</a>
                                 </div>):
                             (
                                 <div className="navbar-right">

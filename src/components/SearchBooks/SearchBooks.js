@@ -11,7 +11,8 @@ class SearchBooks extends  Component {
 
     static propTypes = {
         onShelfChange: PropTypes.func.isRequired,
-        userBooks: PropTypes.array.isRequired
+        userBooks: PropTypes.array.isRequired,
+        userLoggedIn: PropTypes.bool.isRequired
     }
 
 
@@ -55,7 +56,7 @@ class SearchBooks extends  Component {
                         this.state.foundBooks.map( book => {
                             let userBook = this.props.userBooks.filter( userBook => userBook.id === book.id )[0] || null
                             book.shelf = (userBook)? userBook.shelf: 'none'
-                            return ( <Book book={book}  onShelfChange={this.props.onShelfChange} key={book.id} /> )
+                            return ( <Book book={book}  onShelfChange={this.props.onShelfChange} key={book.id} userLoggedIn={this.props.userLoggedIn} /> )
                         })
                     ): (this.state.foundBooks.length === 0 && this.state.query !== '')? (
                         <div>No book found</div>

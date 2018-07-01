@@ -48,7 +48,6 @@ class Login extends Component {
                 }else{
                     let user = res.user
                     delete res.user
-                    this.setState({ loginError: res })
                     this.props.onUserLogin(user)
                 }
             })

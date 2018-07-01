@@ -8,7 +8,8 @@ class ListBooks extends Component {
 
     static propTypes = {
         books: PropTypes.array.isRequired,
-        onShelfChange: PropTypes.func.isRequired
+        onShelfChange: PropTypes.func.isRequired,
+        userLoggedIn: PropTypes.bool.isRequired
     }
 
 
@@ -21,8 +22,9 @@ class ListBooks extends Component {
         const readBooks =  this.props.books.filter( (book) => book.shelf === 'read')
 
         return (
-            <div className="list-books">
+            (this.props.userLoggedIn)? (
 
+            <div className="list-books">
                 <div className="bookshelf">
                     <div className="bookshelf-header">
                         <div className="left-line"></div>
@@ -30,8 +32,14 @@ class ListBooks extends Component {
                         <div className="right-line"></div>
                     </div>
                     <div className="bookshelf-books">
+
                         {currentlyReadingBooks.map( book => (
-                            <Book book={book} key={book.id} onShelfChange={this.props.onShelfChange} />
+                            <Book
+                                book={book}
+                                key={book.id}
+                                onShelfChange={this.props.onShelfChange}
+                                userLoggedIn={this.props.userLoggedIn}
+                            />
                         ))}
                     </div>
                 </div>
@@ -43,7 +51,12 @@ class ListBooks extends Component {
                     </div>
                     <div className="bookshelf-books">
                         {wantToReadBooks.map( book => (
-                            <Book book={book} key={book.id} onShelfChange={this.props.onShelfChange} />
+                            <Book
+                                book={book}
+                                key={book.id}
+                                onShelfChange={this.props.onShelfChange}
+                                userLoggedIn={this.props.userLoggedIn}
+                            />
                         ))}
                     </div>
                 </div>
@@ -56,13 +69,21 @@ class ListBooks extends Component {
                     </div>
                     <div className="bookshelf-books">
                         {readBooks.map( book => (
-                            <Book book={book} key={book.id} onShelfChange={this.props.onShelfChange} />
+                            <Book
+                                book={book}
+                                key={book.id}
+                                onShelfChange={this.props.onShelfChange}
+                                userLoggedIn={this.props.userLoggedIn}
+                            />
                         ))}
                     </div>
                 </div>
-
-
             </div>
+            ):(
+                <div className="list-books">
+                    <p className="login-alert-home">Login or signup to get your current books</p>
+                </div>
+            )
         )
     }
 

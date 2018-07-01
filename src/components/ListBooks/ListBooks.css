@@ -37,3 +37,9 @@
     flex-wrap: wrap;
     padding: 20px;
 }
+
+.login-alert-home{
+    text-align: center;
+    margin-top: 50px !important;
+    font-size: 16pt;
+}

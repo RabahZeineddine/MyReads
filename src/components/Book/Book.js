@@ -11,7 +11,8 @@ class Book extends Component {
 
     static propTypes = {
         book: PropTypes.object.isRequired,
-        onShelfChange: PropTypes.func.isRequired
+        onShelfChange: PropTypes.func.isRequired,
+        userLoggedIn: PropTypes.bool.isRequired
     }
 
     showBookOptions = () => {
@@ -37,6 +38,8 @@ class Book extends Component {
                     ):(
                         <div className="book-cover" style={{ backgroundImage: `url(${defaultCoverImage})`}}></div>
                     )}
+                    {this.props.userLoggedIn && (
+
                     <div className={`book-options ${this.state.showOptions ? "show-options":"hide-options"}` }>
                         <div className="book-options-header">
                             <h4>Move to..</h4>
@@ -68,11 +71,15 @@ class Book extends Component {
                             </button>
                         </div>
                     </div>
+                    )}
                 </div>
                 <div className="book-footer">
                     <div className="book-footer-header">
                         <div className="book-title truncate">{book.title}</div>
+                        {this.props.userLoggedIn && (
+
                         <button className="book-options-btn" onClick={ () => this.showBookOptions()} ><i className="material-icons">more_vert</i></button>
+                        )}
                     </div>
                     <div className="book-authors">{  (book.authors && book.authors.length>0) ? book.authors.join(' , '): 'No author available'}</div>
                 </div>

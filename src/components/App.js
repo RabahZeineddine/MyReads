@@ -12,18 +12,36 @@ import './App.css';
 class App extends Component {
 
     state = {
-        books: []
+        books: [],
+        user:{},
+        userLoggedIn: false
     }
 
     componentDidMount(){
-        BooksAPI.getAll().then( books => {
-            this.setState({books})
-        })
+
+        if(Util.sessionCheck('user')){
+            this.setState({ userLoggedIn: true, user: Util.getSession('user')})
+            BooksAPI.getAll().then( books => {
+                this.setState({books })
+            })
+        }
+
     }
 
     handleUserLogin = (user) => {
         Util.setSession('user', user)
+        this.setState({userLoggedIn: true, user})
+
+        BooksAPI.getAll().then( books => {
+            this.setState({books })
+        })
     }
+
+    handleUserLogout = () => {
+        Util.deleteSession('user')
+        this.setState({ user: {}, userLoggedIn: false})
+    }
+
 
     handleShelfChange = (changedBook, shelf) => {
         let books = this.state.books
@@ -45,19 +63,27 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header />
+                <Header logout={this.handleUserLogout} user={this.state.user} userLoggedIn={this.state.userLoggedIn} />
                 <Route exact path="/" render={ () => (
-                    <ListBooks books={ this.state.books } onShelfChange={this.handleShelfChange} />
+                    <ListBooks
+                        books={ this.state.books }
+                        onShelfChange={this.handleShelfChange}
+                        userLoggedIn={this.state.userLoggedIn}
+                    />
                 )} />
 
                 <Route exact path="/search" render={ () => (
-                    <SearchBooks onShelfChange={this.handleShelfChange} userBooks={this.state.books} />
+                    <SearchBooks
+                        onShelfChange={this.handleShelfChange}
+                        userBooks={this.state.books}
+                        userLoggedIn={this.state.userLoggedIn}
+                    />
                 )} />
 
                 <Route exact path="/login" render={ ({history}) => (
                     <Login onUserLogin={(user) => {
-                            this.handleUserLogin(user)
-                            history.push('/')
+                        this.handleUserLogin(user)
+                        history.push('/')
                     }} />
                 )} />
 
