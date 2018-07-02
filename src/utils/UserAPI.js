@@ -16,3 +16,13 @@ export const login = (user) =>
         },
         body: JSON.stringify(user)
     }).then( res => res.json())
+
+export const signup = (user) =>
+    fetch(`${api}/signup`,{
+        method: 'POST',
+        headers:{
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    }).then( res => res.json() )
