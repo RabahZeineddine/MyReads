@@ -26,7 +26,7 @@ class Header extends Component {
                         </div>
                         { this.props.userLoggedIn? (
                                 <div className="navbar-right">
-                                    <p className="navbar-item-text">Welcome, {this.props.user.name}</p>
+                                    <p className="navbar-item-text">Welcome, {this.props.user.firstname}</p>
                                     <a className="navbar-item" onClick={this.props.logout}> Logout</a>
                                 </div>):
                             (
