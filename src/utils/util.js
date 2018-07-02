@@ -6,6 +6,8 @@ export const getServerMessage = (serverMsg) => {
             return "User not found."
         case "WRONG_CREDENTIALS":
             return "Wrong credentials, check your e-mail or password."
+        case "USER_ALREADY_EXISTS":
+            return "User already exists, change your e-mail or login"
         default:
             return "An error occurred, try again."
     }
