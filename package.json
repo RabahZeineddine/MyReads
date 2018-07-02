@@ -2,8 +2,6 @@
   "name": "myreads",
   "homepage": "http://rabahzeineddine.github.io/myreads",
   "version": "0.1.0",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
   "private": true,
   "dependencies": {
     "form-serialize": "^0.7.2",
@@ -15,6 +13,8 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
