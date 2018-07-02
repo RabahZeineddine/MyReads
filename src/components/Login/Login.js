@@ -30,11 +30,11 @@ class Login extends Component {
 
         if (!values.email) {
             inputErrors.emailError = true
-            inputErrors.emailMsg = "Email is required to login"
+            inputErrors.emailMsg = "Email is required"
         }
         if (!values.password) {
             inputErrors.passwordError = true
-            inputErrors.passwordMsg = "Password is required to login"
+            inputErrors.passwordMsg = "Password is required"
         }
 
         if (inputErrors.emailError || inputErrors.passwordError) {
