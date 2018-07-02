@@ -8,6 +8,7 @@ import * as Util from '../utils/util'
 import * as BooksAPI from '../utils/BooksAPI'
 import {Route} from 'react-router-dom'
 import './App.css';
+import Signup from "./Signup";
 
 class App extends Component {
 
@@ -40,6 +41,11 @@ class App extends Component {
     handleUserLogout = () => {
         Util.deleteSession('user')
         this.setState({ user: {}, userLoggedIn: false})
+    }
+
+    handleUserSignup = (user) => {
+        this.handleUserLogin(user)
+
     }
 
 
@@ -85,6 +91,13 @@ class App extends Component {
                         this.handleUserLogin(user)
                         history.push('/')
                     }} />
+                )} />
+
+                <Route exact path="/signup" render={ ({history}) => (
+                    <Signup onUserSignup={ (user) => {
+                        this.handleUserSignup(user)
+                        history.push('/')
+                    }}/>
                 )} />
 
                 <Footer />
