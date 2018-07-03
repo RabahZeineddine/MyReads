@@ -42,12 +42,10 @@ class Login extends Component {
         }else{
             /* Login */
             UserAPI.login(values).then( res => {
-                alert('res')
                 if(res.error){
                     res.errorMsg =getServerMessage(res.errorMsg)
                     this.setState({ loginError: res })
                 }else{
-                    alert('ASD')
                     let user = res.user
                     delete res.user
                     this.props.onUserLogin(user)
