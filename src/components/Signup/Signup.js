@@ -89,6 +89,8 @@ class Signup extends Component {
                     delete res.user
                     this.props.onUserSignup(user)
                 }
+            }).catch((err)=>{
+                this.setState({signupError: {error: true ,errorMsg: getServerMessage(err)}})
             })
         }
     }
