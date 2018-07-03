@@ -34,14 +34,14 @@ class Book extends Component {
         return (
             <div className="book">
                 <div className="book-top">
-                    <Link to={`/books/${book.id}`}>
+                    <Link to={`/books/${book.id}`} >
 
                     { book.hasOwnProperty('imageLinks')? (
                         <div className="book-cover" style={{ backgroundImage: `url("${book.imageLinks.smallThumbnail}")`}}></div>
                     ):(
                         <div className="book-cover" style={{ backgroundImage: `url(${defaultCoverImage})`}}></div>
                     )}
-                    ></Link>
+                    </Link>
                     {this.props.userLoggedIn && (
 
                     <div className={`book-options ${this.state.showOptions ? "show-options":"hide-options"}` }>
