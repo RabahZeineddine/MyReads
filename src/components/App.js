@@ -9,6 +9,7 @@ import * as BooksAPI from '../utils/BooksAPI'
 import {Route} from 'react-router-dom'
 import './App.css';
 import Signup from "./Signup";
+import FullBook from "./FullBook";
 
 class App extends Component {
 
@@ -99,6 +100,10 @@ class App extends Component {
                         history.push('/')
                     }}/>
                 )} />
+
+                <Route path="/books/:id" render={(props) => (
+                    <FullBook bookId={props.match.params.id} />
+                )}/>
 
                 <Footer />
             </div>
