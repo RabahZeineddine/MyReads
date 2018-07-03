@@ -42,14 +42,18 @@ class Login extends Component {
         }else{
             /* Login */
             UserAPI.login(values).then( res => {
+                alert('res')
                 if(res.error){
                     res.errorMsg =getServerMessage(res.errorMsg)
                     this.setState({ loginError: res })
                 }else{
+                    alert('ASD')
                     let user = res.user
                     delete res.user
                     this.props.onUserLogin(user)
                 }
+            }).catch((err)=>{
+                this.setState({loginError: {error: true ,errorMsg: getServerMessage(err)}})
             })
         }
     }
@@ -71,7 +75,7 @@ class Login extends Component {
     render(){
         return (
             <div className="login-content">
-                <form className="login-form" onSubmit={this.handleSubmit}>
+                <form className="login-form" onSubmit={this.handleSubmit} action="#">
                     <p className="login-alert">{ (this.state.loginError.error)?this.state.loginError.errorMsg:'' }</p>
                     <div className="form-item">
                         <input

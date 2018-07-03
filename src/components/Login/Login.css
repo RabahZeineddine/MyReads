@@ -71,3 +71,25 @@
     color: red;
     opacity: 1; /* Firefox */
 }
+
+
+@media only screen and (max-width: 850px) {
+
+    .login-form{
+        width: 70%;
+    }
+
+    .login-form input{
+        font-size: 10pt;
+    }
+
+    .login-form-btn{
+        font-size: 10pt;
+    }
+
+    .helper-error{
+        font-size: 10pt;
+    }
+
+}
+

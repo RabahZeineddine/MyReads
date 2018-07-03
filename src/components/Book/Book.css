@@ -1,8 +1,7 @@
 .book{
     max-width: 178px;
     background-color: #E7E7E7;
-    margin: 0 20px;
-    margin-top: 40px;
+    margin: 40px 20px 0 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -120,4 +119,62 @@
 
 .book-authors{
     font-size: 8pt;
+}
+
+
+@media only screen and (max-width: 850px) {
+    .book{
+        max-width: 128px;
+        margin: 20px 10px 0 10px;
+     }
+
+    .book-cover{
+        width: 128px;
+        height: 192px;
+    }
+
+    .book-options{
+        width: 128px;
+
+    }
+
+    @keyframes show-book-options {
+        from { height: 0; opacity: 0}
+        50%{opacity: 0}
+        to{ height: 192px; opacity: 1}
+    }
+
+    .book-options-header{
+        padding: 0px 0 0 5px;
+    }
+
+    .book-options-content{
+        padding-top: 0px;
+    }
+
+    .book-footer{
+        padding: 0px;
+    }
+
+    .book-option-btn{
+        font-size: 8pt;
+    }
+
+    .book-option-btn-clicked{
+        background-size: 15px ;
+    }
+
+
+    .book-title{
+        font-size: 8pt;
+    }
+
+    .book-authors{
+        font-size: 6pt;
+    }
+
+    .book-options-btn{
+        margin: 0px;
+    }
+
 }

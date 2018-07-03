@@ -29,11 +29,16 @@
     width: 100%;
 }
 
-.navbar-left,
-.navbar-right {
-    width: 50%;
+.navbar-left{
+    width: 60%;
     display: flex;
 }
+
+.navbar-right {
+    width: 40%;
+    display: flex;
+}
+
 
 .navbar-right{
     justify-content: flex-end;
@@ -59,4 +64,16 @@
 .navbar-item:hover{
     background-color: #EEEEEE;
     cursor: pointer;
+}
+
+
+@media only screen and (max-width: 850px) {
+
+    .header-top{
+        height: 15vh;
+    }
+
+    .show-on-large-screen {
+        display: none;
+    }
 }

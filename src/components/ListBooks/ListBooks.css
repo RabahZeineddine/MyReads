@@ -43,3 +43,10 @@
     margin-top: 50px !important;
     font-size: 16pt;
 }
+
+@media only screen and (max-width: 850px) {
+
+    .login-alert-home{
+        font-size: 12pt;
+    }
+}

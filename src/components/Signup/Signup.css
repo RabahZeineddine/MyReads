@@ -83,3 +83,44 @@
     color: red;
     opacity: 1; /* Firefox */
 }
+
+@media only screen and (max-width: 850px) {
+    .signup-content{
+        padding: 40px 0;
+    }
+
+    .signup-form{
+        width: 70%;
+    }
+
+
+    .signup-form  .form-item{
+        margin: 10px 0;
+    }
+
+    .signup-alert{
+        width: 100%;
+        text-align: center;
+        color: red;
+        min-height: 18px;
+        padding: 5px 0 !important;
+    }
+
+    .signup-form  input{
+        font-size: 10pt;
+    }
+
+    .signup-form-btn{
+        font-size: 10pt;
+    }
+
+    .invalid{
+        color: red;
+        border-bottom: 1px solid red !important;
+    }
+
+    .invalid::placeholder {
+        color: red;
+        opacity: 1; /* Firefox */
+    }
+}

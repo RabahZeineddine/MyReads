@@ -90,3 +90,42 @@
 .instagram-icon{
     background-image: url("../../icons/instagram-logo.png");
 }
+
+.mobile-footer-title {
+    display: none;
+}
+
+@media only screen and (max-width: 850px) {
+
+    .show-on-large-screen{
+        display: none;
+    }
+
+    .footer-content{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mobile-footer-title{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .footer-line{
+        width: calc( (100% - 100px)/2 );
+    }
+
+    .about-footer,
+    .contact-footer,
+    .social-footer{
+        width: 90%;
+        padding: 0px;
+    }
+
+    .social-footer {
+        margin-bottom: 10px;
+    }
+
+}
