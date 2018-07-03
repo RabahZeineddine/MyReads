@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import defaultCoverImage from '../../imgs/default_cover1.png'
 import './Book.css'
 
@@ -33,11 +34,14 @@ class Book extends Component {
         return (
             <div className="book">
                 <div className="book-top">
+                    <Link to={`/books/${book.id}`}>
+
                     { book.hasOwnProperty('imageLinks')? (
                         <div className="book-cover" style={{ backgroundImage: `url("${book.imageLinks.smallThumbnail}")`}}></div>
                     ):(
                         <div className="book-cover" style={{ backgroundImage: `url(${defaultCoverImage})`}}></div>
                     )}
+                    ></Link>
                     {this.props.userLoggedIn && (
 
                     <div className={`book-options ${this.state.showOptions ? "show-options":"hide-options"}` }>
