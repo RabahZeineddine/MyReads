@@ -25,7 +25,7 @@ class Footer extends Component{
                         <div className="footer-line"></div>
                     </div>
                     <div className="about-footer">
-                        <p>My Reads: A book tracking app that helps you categorize your books and find new books based on React Nanodegree Program.</p>
+                        <p>MyReads: A book tracking app that helps you categorize your books and find new ones. Based on React Nanodegree Program.</p>
                     </div>
                     <div className="mobile-footer-title">
                         <div className="footer-line"></div>
