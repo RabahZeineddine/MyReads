@@ -3,6 +3,7 @@ import serializeForm from 'form-serialize'
 import PropTypes from 'prop-types'
 import { getServerMessage } from "../../utils/util";
 import * as UserAPI from '../../utils/UserAPI'
+import MD5 from 'md5'
 
 import './Signup.css'
 
@@ -80,6 +81,7 @@ class Signup extends Component {
             this.setState({inputErrors})
         }else{
             /* Signuo */
+            values.password = MD5(values.password)
             UserAPI.signup(values).then( res => {
                 if(res.error){
                     res.errorMsg = getServerMessage(res.errorMsg)

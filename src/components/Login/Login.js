@@ -3,6 +3,7 @@ import serializeForm from 'form-serialize'
 import PropTypes from 'prop-types'
 import { getServerMessage } from "../../utils/util";
 import * as UserAPI from '../../utils/UserAPI'
+import MD5 from 'md5'
 
 import './Login.css'
 
@@ -41,6 +42,8 @@ class Login extends Component {
             this.setState({inputErrors})
         }else{
             /* Login */
+            this.setState({loginError: {error: false}})
+            values.password = MD5(values.password)
             UserAPI.login(values).then( res => {
                 if(res.error){
                     res.errorMsg =getServerMessage(res.errorMsg)
@@ -51,6 +54,7 @@ class Login extends Component {
                     this.props.onUserLogin(user)
                 }
             }).catch((err)=>{
+                console.log(err)
                 this.setState({loginError: {error: true ,errorMsg: getServerMessage(err)}})
             })
         }
