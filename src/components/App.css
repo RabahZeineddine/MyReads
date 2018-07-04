@@ -9,3 +9,28 @@ p{
     margin: 0 !important;
     padding: 0 !important;
 }
+
+.loading-div{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../icons/loading.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.loading-error{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 850px) {
+
+    .loading-div{
+        min-height: 200px;
+    }
+
+}

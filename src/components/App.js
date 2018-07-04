@@ -16,15 +16,19 @@ class App extends Component {
     state = {
         books: [],
         user:{},
-        userLoggedIn: false
+        userLoggedIn: false,
+        loadingBooks: false,
+        error: false
     }
 
     componentDidMount(){
 
         if(Util.sessionCheck('user')){
-            this.setState({ userLoggedIn: true, user: Util.getSession('user')})
+            this.setState({ userLoggedIn: true, user: Util.getSession('user') , loadingBooks: true})
             BooksAPI.getAll().then( books => {
-                this.setState({books })
+                this.setState({books , loadingBooks:false })
+            }).catch( (err) => {
+                this.setState({error: true })
             })
         }
 
@@ -32,10 +36,12 @@ class App extends Component {
 
     handleUserLogin = (user) => {
         Util.setSession('user', user)
-        this.setState({userLoggedIn: true, user})
+        this.setState({userLoggedIn: true, user,  loadingBooks: true})
 
         BooksAPI.getAll().then( books => {
-            this.setState({books })
+            this.setState({books ,  loadingBooks: false})
+        }).catch((err) => {
+            this.setState({error: true})
         })
     }
 
@@ -46,7 +52,6 @@ class App extends Component {
 
     handleUserSignup = (user) => {
         this.handleUserLogin(user)
-
     }
 
 
@@ -62,8 +67,9 @@ class App extends Component {
             })
         }
         BooksAPI.update(changedBook,shelf).then((res) => {
-            /* TODO: filter local books comparing it with res returned from BooksAPI.update() */
             this.setState({ books })
+        }).catch((err) => {
+            this.setState({error: true})
         })
     }
 
@@ -76,6 +82,8 @@ class App extends Component {
                         books={ this.state.books }
                         onShelfChange={this.handleShelfChange}
                         userLoggedIn={this.state.userLoggedIn}
+                        loadingBooks={this.state.loadingBooks}
+                        error={this.state.error}
                     />
                 )} />
 

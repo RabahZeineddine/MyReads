@@ -18,23 +18,25 @@ class SearchBooks extends  Component {
 
     state = {
         query: '',
-        foundBooks:[]
+        foundBooks:[],
+        loadingBooks: false
     }
 
 
     handleQuery = (query) => {
         if(query !== ''){
+            this.setState({ loadingBooks: true})
             query = query.replace(new RegExp(/\./,'g'),'')
             query = escapeRegExp(query,'i')
             BooksAPI.search(query).then(( result ) => {
                 if(result && !result.hasOwnProperty("error")){
-                    this.setState({ query, foundBooks: result})
+                    this.setState({ query, foundBooks: result, loadingBooks: false})
                 }else{
-                    this.setState({ query, foundBooks: []})
+                    this.setState({ query, foundBooks: [], loadingBooks: false})
                 }
             })
         }else{
-            this.setState({query: '', foundBooks:[]})
+            this.setState({query: '', foundBooks:[], loadingBooks: false})
         }
     }
 
@@ -51,17 +53,21 @@ class SearchBooks extends  Component {
                         onChange={ (e) =>  this.handleQuery(e.target.value.trim())}
                     />
                 </div>
-                <div className="search-result">
-                    {(this.state.foundBooks.length > 0 && this.state.query !== '' )?(
-                        this.state.foundBooks.map( book => {
-                            let userBook = this.props.userBooks.filter( userBook => userBook.id === book.id )[0] || null
-                            book.shelf = (userBook)? userBook.shelf: 'none'
-                            return ( <Book book={book}  onShelfChange={this.props.onShelfChange} key={book.id} userLoggedIn={this.props.userLoggedIn} /> )
-                        })
-                    ): (this.state.foundBooks.length === 0 && this.state.query !== '')? (
-                        <div>No book found</div>
-                    ): '' }
-                </div>
+                {this.state.loadingBooks? <div className="loading-div"></div>:(
+                    <div className="search-result">
+                        {(this.state.foundBooks.length > 0 && this.state.query !== '') ? (
+                            this.state.foundBooks.map(book => {
+                                let userBook = this.props.userBooks.filter(userBook => userBook.id === book.id)[0] || null
+                                book.shelf = (userBook) ? userBook.shelf : 'none'
+                                return (<Book book={book} onShelfChange={this.props.onShelfChange} key={book.id}
+                                              userLoggedIn={this.props.userLoggedIn}/>)
+                            })
+                        ) : (this.state.foundBooks.length === 0 && this.state.query !== '') ? (
+                            <div>No book found</div>
+                        ) : ''
+                        }
+                    </div>
+                )}
             </div>
         )
     }
