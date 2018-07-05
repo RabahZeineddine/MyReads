@@ -1,23 +1,24 @@
 .book{
-    max-width: 178px;
-    background-color: #E7E7E7;
-    margin: 40px 20px 0 20px;
+    width: 200px;
+    background-color: #EDEDED;
+    margin: 0 20px 40px 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .book-top{
     position: relative;
+    width: 100%;
 }
 
 .book-cover{
-    width: 178px;
-    height: 242px;
+    width: 100%;
+    height: 280px;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .book-options{
-    width: 178px;
+    width: 100%;
     height: 0px;
     position: absolute;
     bottom: 0;
@@ -26,6 +27,7 @@
     background-color: #fff;
 
 }
+
 .show-options{
     display: block;
     z-index: 0;
@@ -33,14 +35,14 @@
     -moz-animation-name: show-book-options;
     -o-animation-name: show-book-options;
     animation-name: show-book-options;
-    animation-duration: 0.3s;
+    animation-duration: 0.4s;
     animation-fill-mode: forwards;
 }
 
 @keyframes show-book-options {
     from { height: 0; opacity: 0}
-    50%{opacity: 0}
-    to{ height: 242px; opacity: 1}
+    30%{opacity: 0}
+    to{ height: 100%; opacity: 1}
 }
 
 .book-options-header{
@@ -62,6 +64,7 @@
     display: flex;
     flex-direction: column;
     padding: 5px;
+
 }
 .book-footer-header{
     display: flex;
