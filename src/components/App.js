@@ -110,7 +110,12 @@ class App extends Component {
                 )} />
 
                 <Route path="/books/:id" render={(props) => (
-                    <FullBook bookId={props.match.params.id} />
+                    <FullBook
+                        bookId={props.match.params.id}
+                        userBook={this.state.books.filter( book => book.id === props.match.params.id)[0] || null}
+                        userLoggedIn={this.state.userLoggedIn}
+                        onShelfChange={this.handleShelfChange}
+                    />
                 )}/>
 
                 <Footer />
