@@ -1,8 +1,4 @@
-
-const api = "https://myreadsbackend.herokuapp.com"
-// const api = "http://localhost:5000"
-
-
+const api = "https://myreadsbackend.mybluemix.net"
 
 const headers = {
     'Accept': 'application/json',
