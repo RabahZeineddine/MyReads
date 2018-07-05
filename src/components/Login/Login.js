@@ -3,6 +3,7 @@ import serializeForm from 'form-serialize'
 import PropTypes from 'prop-types'
 import { getServerMessage } from "../../utils/util";
 import * as UserAPI from '../../utils/UserAPI'
+import loadingBtn from '../../icons/loading-btn.gif'
 import MD5 from 'md5'
 
 import './Login.css'
@@ -20,11 +21,15 @@ class Login extends Component {
         },
         loginError:{
             error: false
-        }
+        },
+        loadingBtn: false
 
     }
 
+
+
     handleSubmit = (e) => {
+        this.setState({ loadingBtn: true })
         e.preventDefault()
         let inputErrors = this.state.inputErrors
         const values = serializeForm(e.target, {hash: true})
@@ -39,7 +44,7 @@ class Login extends Component {
         }
 
         if (inputErrors.emailError || inputErrors.passwordError) {
-            this.setState({inputErrors})
+            this.setState({inputErrors , loadingBtn:false})
         }else{
             /* Login */
             this.setState({loginError: {error: false}})
@@ -47,7 +52,7 @@ class Login extends Component {
             UserAPI.login(values).then( res => {
                 if(res.error){
                     res.errorMsg =getServerMessage(res.errorMsg)
-                    this.setState({ loginError: res })
+                    this.setState({ loginError: res , loadingBtn: false })
                 }else{
                     let user = res.user
                     delete res.user
@@ -55,8 +60,9 @@ class Login extends Component {
                 }
             }).catch((err)=>{
                 console.log(err)
-                this.setState({loginError: {error: true ,errorMsg: getServerMessage(err)}})
+                this.setState({loadingBtn:false, loginError: {error: true ,errorMsg: getServerMessage(err)}})
             })
+
         }
     }
 
@@ -101,7 +107,7 @@ class Login extends Component {
                         <p className="helper-error">{this.state.inputErrors.passwordMsg || ''}</p>
                     </div>
                     <div className="form-item">
-                        <button type="submit"  className="login-form-btn" >Login</button>
+                        <button type="submit"  className={this.state.loadingBtn? 'loading-btn':'login-form-btn'} >{this.state.loadingBtn ? <img src={loadingBtn} alt="loading"/>:'Login'}</button>
                     </div>
                 </form>
             </div>

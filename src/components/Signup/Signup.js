@@ -3,6 +3,7 @@ import serializeForm from 'form-serialize'
 import PropTypes from 'prop-types'
 import { getServerMessage } from "../../utils/util";
 import * as UserAPI from '../../utils/UserAPI'
+import loadingBtn from '../../icons/loading-btn.gif'
 import MD5 from 'md5'
 
 import './Signup.css'
@@ -23,11 +24,13 @@ class Signup extends Component {
         },
         signupError:{
             error: false
-        }
+        },
+        loadingBtn: false
 
     }
 
     handleSubmit = (e) => {
+        this.setState({loadingBtn: true})
         e.preventDefault()
         let inputErrors = this.state.inputErrors
         const values = serializeForm(e.target, {hash: true})
@@ -78,21 +81,21 @@ class Signup extends Component {
 
 
         if (!valid) {
-            this.setState({inputErrors})
+            this.setState({inputErrors , loadingBtn: false})
         }else{
             /* Signuo */
             values.password = MD5(values.password)
             UserAPI.signup(values).then( res => {
                 if(res.error){
                     res.errorMsg = getServerMessage(res.errorMsg)
-                    this.setState({ signupError: res })
+                    this.setState({ signupError: res, loadingBtn:false })
                 }else{
                     let user = res.user
                     delete res.user
                     this.props.onUserSignup(user)
                 }
             }).catch((err)=>{
-                this.setState({signupError: {error: true ,errorMsg: getServerMessage(err)}})
+                this.setState({ loadingBtn: false ,signupError: {error: true ,errorMsg: getServerMessage(err)}})
             })
         }
     }
@@ -189,7 +192,7 @@ class Signup extends Component {
                         </div>
                     </div>
                     <div className="form-item">
-                        <button type="submit"  className="signup-form-btn" >Signup</button>
+                        <button type="submit"  className={this.state.loadingBtn? 'loading-btn':'signup-form-btn'} >{this.state.loadingBtn?<img src={loadingBtn} alt="loading" />:'Signup'}</button>
                     </div>
                 </form>
             </div>
