@@ -22,7 +22,6 @@ class App extends Component {
     }
 
     componentDidMount(){
-
         /* Verify if user is already logged in, if yes, get his/her books from server*/
         if(Util.sessionCheck('user')){
             this.setState({ userLoggedIn: true, user: Util.getSession('user') , loadingBooks: true})
@@ -32,7 +31,6 @@ class App extends Component {
                 this.setState({error: true })
             })
         }
-
     }
 
     handleUserLogin = (user) => {
@@ -78,7 +76,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header logout={this.handleUserLogout} user={this.state.user} userLoggedIn={this.state.userLoggedIn} />
+                <Header
+                    logout={this.handleUserLogout}
+                    user={this.state.user}
+                    userLoggedIn={this.state.userLoggedIn}
+                />
 
                 <Route exact path="/" render={ () => (
                     <ListBooks
@@ -119,7 +121,7 @@ class App extends Component {
                         userLoggedIn={this.state.userLoggedIn}
                         onShelfChange={this.handleShelfChange}
                     />
-                )}/>
+                )} />
 
                 <Footer />
             </div>
