@@ -26,7 +26,8 @@ class SearchBooks extends  Component {
     handleQuery = (query) => {
         if(query !== ''){
             this.setState({ loadingBooks: true})
-            query = query.replace(new RegExp(/\./,'g'),'')
+            /* Remove points from query.*/
+            query = query.replace(new RegExp(/\./,'g'),' ')
             query = escapeRegExp(query,'i')
             BooksAPI.search(query).then(( result ) => {
                 if(result && !result.hasOwnProperty("error")){

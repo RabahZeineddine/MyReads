@@ -23,6 +23,7 @@ class App extends Component {
 
     componentDidMount(){
 
+        /* Verify if user is already logged in, if yes, get his/her books from server*/
         if(Util.sessionCheck('user')){
             this.setState({ userLoggedIn: true, user: Util.getSession('user') , loadingBooks: true})
             BooksAPI.getAll().then( books => {
@@ -37,7 +38,6 @@ class App extends Component {
     handleUserLogin = (user) => {
         Util.setSession('user', user)
         this.setState({userLoggedIn: true, user,  loadingBooks: true})
-
         BooksAPI.getAll().then( books => {
             this.setState({books ,  loadingBooks: false})
         }).catch((err) => {
@@ -51,14 +51,16 @@ class App extends Component {
     }
 
     handleUserSignup = (user) => {
+        /* Re-use userlogin method as it does the same. */
         this.handleUserLogin(user)
     }
 
-
     handleShelfChange = (changedBook, shelf) => {
         let books = this.state.books
+        /* if user changes the bookshelf to none, remove it from local books using filter. */
         if(shelf === 'none') books = books.filter( book => book.id !== changedBook.id)
         else{
+            /* retrieve book from local or use null to add a new one if it is the case. */
             let selectedBook = books.filter( book => book.id === changedBook.id)[0] || null
             if(!selectedBook) books = books.concat(changedBook)
             books = books.map( book => {
@@ -77,6 +79,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Header logout={this.handleUserLogout} user={this.state.user} userLoggedIn={this.state.userLoggedIn} />
+
                 <Route exact path="/" render={ () => (
                     <ListBooks
                         books={ this.state.books }
@@ -122,7 +125,6 @@ class App extends Component {
             </div>
         );
     }
-
 }
 
 export default App;
