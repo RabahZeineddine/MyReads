@@ -124,6 +124,10 @@
     font-size: 8pt;
 }
 
+.no-author{
+    color: #B6B6B6;
+}
+
 
 @media only screen and (max-width: 850px) {
     .book{
