@@ -85,7 +85,7 @@ class Book extends Component {
                         <button className="book-options-btn" onClick={ () => this.showBookOptions()} ><i className="material-icons">more_vert</i></button>
                         )}
                     </div>
-                    <div className="book-authors">{  (book.authors && book.authors.length>0) ? book.authors.join(' , '): 'No author available'}</div>
+                    <div className="book-authors">{  (book.authors && book.authors.length>0) ? book.authors.join(' , '): <span className="no-author">No author available</span>}</div>
                 </div>
             </div>
         )
