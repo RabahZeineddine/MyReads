@@ -1,5 +1,3 @@
-
-
 export const getServerMessage = (serverMsg) => {
     switch(serverMsg){
         case "USER_NOT_FOUND":

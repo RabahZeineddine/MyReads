@@ -9,3 +9,10 @@ npm install
 npm start
 ```
 
+This project uses another node.js backend that I created to handle login/signup. 
+
+The backend github: 
+
+```
+    https://github.com/RabahZeineddine/MyReads-Backend.git
+```
